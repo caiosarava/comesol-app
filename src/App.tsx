@@ -13,7 +13,16 @@ function LoginPage() {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (!error) navigate("/visualizacao");
+    if (error) return;
+    // Verifica se já existe cadastro
+    const user = (await supabase.auth.getUser()).data.user;
+    if (!user) return;
+    const { data: groupData } = await supabase.from("groups").select("id").eq("user_id", user.id).single();
+    if (groupData) {
+      navigate("/visualizacao");
+    } else {
+      navigate("/cadastro");
+    }
   }
 
 
