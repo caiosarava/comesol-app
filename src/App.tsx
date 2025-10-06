@@ -16,9 +16,6 @@ function LoginPage() {
     if (!error) navigate("/visualizacao");
   }
 
-  async function handleGoogleLogin() {
-    await supabase.auth.signInWithOAuth({ provider: "google" });
-  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-100 to-blue-100">
@@ -28,9 +25,6 @@ function LoginPage() {
         <input type="password" name="password" placeholder="Senha" className="p-2 border rounded" required />
         <button type="submit" className="bg-green-600 text-white rounded p-2">Entrar</button>
       </form>
-      <button onClick={handleGoogleLogin} className="mt-4 bg-blue-600 text-white rounded p-2">
-        Entrar com Google
-      </button>
     </div>
   );
 }
