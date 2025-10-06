@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
+import { supabase } from './lib/supabase';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 function LoginPage() {
   const navigate = useNavigate();
